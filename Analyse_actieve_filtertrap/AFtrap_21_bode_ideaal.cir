@@ -1,0 +1,33 @@
+*--------------------------------------
+* BAND-PASS ACTIVE FILTER 			  -
+*                                     -
+* Author: Van Dessel Stijn            -
+* Date: 9 may 2018                    -
+* Filename: AFtrap_21_bode_ideaal.cir -
+*--------------------------------------
+.inc opampIdeal.cir
+
+.model rmod  res(r = 1k  DEV  5%)
+.model cmod  cap(c = 1n  DEV 20%)
+
+Vin    7 0 AC 1V
+
+R1 5 7 rmod 7.9577
+R2 2 3 rmod 7.9577
+R3 3 4 rmod 7.9577
+R4 4 5 rmod 7.9577
+R5 5 6 rmod 15.915
+R6 1 6 rmod 7.9577
+C1 1 2 cmod 10
+C2 5 6 cmod 40
+
+*          i+ i- O
+XTL084_1   0  3  2 opampIdeal
+XTL084_2   0  5  6 opampIdeal
+XTL084_3   1  0  4 opampIdeal
+
+.AC DEC 100 100HZ 100MEGHZ
+*.AC DEC 100 100HZ 10KHZ
+
+.PROBE
+.END
