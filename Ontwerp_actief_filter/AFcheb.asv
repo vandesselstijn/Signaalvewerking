@@ -111,8 +111,8 @@ R4 = R4*ISF
 
 kc   = R3/R1
 kcdb = mag2db(kc)
-wnc  = 1/R3
-fnc  = wnc / (2*pi)
+wnc = 1/R3
+fnc  = wnpc / (2*pi)
 Qzc  = R2/R3
 
 % CHECK2: transfer function (specification vs components)
@@ -126,13 +126,9 @@ bode(H_2);
 bode(H_2c);
 
 H_c = H_1c*H_2c;
-figure(6);
+figure(5);
 hold on;
 bode(filter);
-bode(H_c);
-bode(H_1c);
-bode(H_1); 
 bode(H_2c);
-bode(H_2);
 
 tilefigs;
