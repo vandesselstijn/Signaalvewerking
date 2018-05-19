@@ -1,0 +1,32 @@
+*--------------------------------------
+* Cheb ideaal		       			  -
+*                                     -
+* Author: Van Dessel Stijn            -
+* Date: 9 may 2018                    -
+* Filename: AFchebbode_ideaal.cir -
+*--------------------------------------
+.inc opampIdeal.cir
+
+Vin    1 0 AC 1V
+
+R1 1 2 6.1498k
+R2 2 3 26.648k
+R3 2 7 8.6869k
+R4 3 4 8.6869k
+R5 5 6 8.6869k
+R6 6 7 8.6869k
+R7 5 8 26.648k
+C1 2 3 10n
+C2 4 5 10n
+C3 8 0 10n
+
+*          i+ i- O
+XTL084_1   2  0  3 opampIdeal
+XTL084_2   4  0  5 opampIdeal
+XTL084_3   6  0  7 opampIdeal
+
+*.AC DEC 100 100HZ 100MEGHZ
+.AC DEC 100 100HZ 10KHZ
+
+.PROBE
+.END

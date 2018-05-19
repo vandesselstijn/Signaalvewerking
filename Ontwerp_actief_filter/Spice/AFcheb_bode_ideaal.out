@@ -1,0 +1,110 @@
+
+**** 05/18/18 22:25:08 ******* PSpice Lite (March 2016) ******* ID# 10813 ****
+
+ *--------------------------------------
+
+
+ ****     CIRCUIT DESCRIPTION
+
+
+******************************************************************************
+
+
+
+* Cheb ideaal                                     -
+*                                     -
+* Author: Van Dessel Stijn            -
+* Date: 9 may 2018                    -
+* Filename: AFchebbode_ideaal.cir -
+*--------------------------------------
+.inc opampIdeal.cir
+
+**** INCLUDING opampIdeal.cir ****
+*
+* ideal opamp model (pure VCVS)
+*
+* Adc   = 200000  (amplification at DC)
+* Rin   = infinite MOhm  (imput impedance) 
+* Rout  = 0 Ohm  (output impedance)
+
+* CONNECTIONS:      NON-INVERTING INPUT
+*                   | INVERTING INPUT
+*                   | | OUTPUT
+*                   | | |
+.SUBCKT opampIdeal  1 2 3
+E1    3  0    1 2   200000
+.ENDS
+
+**** RESUMING AFcheb_bode_ideaal.cir ****
+
+Vin    1 0 AC 1V
+
+R1 1 2 6.1498k
+R2 2 3 26.648k
+R3 2 7 8.6869k
+R4 3 4 8.6869k
+R5 5 6 8.6869k
+R6 6 7 8.6869k
+R7 5 8 26.648k
+C1 2 3 10n
+C2 4 5 10n
+C3 8 0 10n
+
+*          i+ i- O
+XTL084_1   2  0  3 opampIdeal
+XTL084_2   4  0  5 opampIdeal
+XTL084_3   6  0  7 opampIdeal
+
+*.AC DEC 100 100HZ 100MEGHZ
+.AC DEC 100 100HZ 10KHZ
+
+.PROBE
+.END
+
+**** 05/18/18 22:25:08 ******* PSpice Lite (March 2016) ******* ID# 10813 ****
+
+ *--------------------------------------
+
+
+ ****     SMALL SIGNAL BIAS SOLUTION       TEMPERATURE =   27.000 DEG C
+
+
+******************************************************************************
+
+
+
+ NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE
+
+
+(    1)    0.0000  (    2)    0.0000  (    3)    0.0000  (    4)    0.0000      
+
+(    5)    0.0000  (    6)    0.0000  (    7)    0.0000  (    8)    0.0000  
+
+
+
+
+    VOLTAGE SOURCE CURRENTS
+    NAME         CURRENT
+
+    Vin          0.000E+00
+
+    TOTAL POWER DISSIPATION   0.00E+00  WATTS
+
+
+
+          JOB CONCLUDED
+
+**** 05/18/18 22:25:08 ******* PSpice Lite (March 2016) ******* ID# 10813 ****
+
+ *--------------------------------------
+
+
+ ****     JOB STATISTICS SUMMARY
+
+
+******************************************************************************
+
+
+
+  Total job time (using Solver 1)   =         .02
+
